@@ -4,7 +4,7 @@ import Title from '../../components/owner/Title'
 
 const ManageCars = () => {
   const currency=import.meta.env.VITE_CURRENCY
-  const [car, setCars] = useState([])
+  const [cars, setCars] = useState([])
   const fetchOwnerCars = async ()=>{
     setCars(dummyCarData)
   }
@@ -26,7 +26,7 @@ const ManageCars = () => {
               </tr>
             </thead>
             <tbody>
-              {car.map((car, index) => (
+              {cars.map((car, index) => (
                 <tr key={index} className='border-t border-borderColor'>
                   <td className='p-3 flex items-center gap-3'>
                     <img src={car.image} alt="" className='h-12 w-12 aspect-square rounded-md object-cover'/>
