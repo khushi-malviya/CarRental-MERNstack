@@ -53,7 +53,7 @@ const CarDetails = () => {
             {/*Features*/}
             <div>
               <h1 className='text-xl font-medium mb-3'>Features</h1>
-              <ul className='grid gridcols-1 sm:grid-cols-2 gap-2'>
+              <ul className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                 {
                   ["360 Camera", "Bluetooth","GPS","Heated Seats", "Rear View", "Mirror"].map((item)=>(
                     <li key={item} className='flex items-center text-gray-500'>
