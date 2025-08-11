@@ -17,4 +17,4 @@ const carSchema = new mongoose.Schema({
     isAvaliable:{type: Boolean, default: true}
 },{timestamps:true})
 const Car=mongoose.model('Car', carSchema);
-export default Car
+export default Car;

@@ -1,6 +1,6 @@
 import { response } from "express";
 import Booking from "../models/Booking.js"
-import Car from "../models/Car";
+import Car from "../models/Car.js";
 
 
 
