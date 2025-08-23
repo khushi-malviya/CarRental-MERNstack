@@ -8,7 +8,7 @@ import Car from "../models/Car.js";
 const checkAvailability = async (car,pickupDate,returnDate)=>{
     const bookings= await Booking.find({
         car,
-        pickupDate: {$lte:returnDate},
+        pickupDate: {$lte: returnDate},
         returnDate: {$gte: pickupDate},
     })
     return bookings.length===0;
@@ -19,17 +19,17 @@ const checkAvailability = async (car,pickupDate,returnDate)=>{
 export const checkAvailabilityOfCar= async (req,res)=>{
 
     try {
-        const {location, pickupDate,returnDate}=req.body
+        const {location , pickupDate, returnDate}=req.body
         //fetch all available cars for the given location
         const cars = await Car.find({location, isAvaliable:true})
 
         //check car availability for the given date range using promise
-        const availableCarsPromises = cars.map(async(car)=>{
-              await checkAvailability(car._id, pickupDate,returnDate)
+        const availableCarsPromises = cars.map(async (car)=>{
+              const isAvailable = await checkAvailability(car._id, pickupDate,returnDate)
               return {...car._doc, isAvailable: isAvailable}
         })
         let availableCars = await Promise.all(availableCarsPromises);
-        availableCars= availableCars.filter(car=> car.isAvailable===true)
+        availableCars= availableCars.filter(car => car.isAvailable === true)
         res.json({success:true, availableCars})
     } catch (error){
         console.log(error.message);
@@ -56,14 +56,14 @@ export const createBooking = async (req,res)=>{
         const price = carData.pricePerDay*noOfDays;
 
         await Booking.create({car, owner: carData.owner, user:_id, pickupDate, returnDate, price})
-        res.json({success: false, message:"Booking Created"})
+        res.json({success: true, message:"Booking Created"})
     } catch (error){
         console.log(error.message)
-        res.json({response:false, message: error.message})
+        res.json({success:false, message: error.message})
     }
 }
 
-//API ro List User Bookings
+//API to List User Bookings
 export const getUserBookings = async (req,res)=>{
     try {
         const {_id} = req.user;   
@@ -71,7 +71,7 @@ export const getUserBookings = async (req,res)=>{
         res.json({success:true, bookings})
     } catch (error) {
         console.log(error.message);
-        res.json({response:false, message:error.message})
+        res.json({success:false, message:error.message})
     }
 }
 
@@ -82,10 +82,10 @@ export const getOwnerBookings = async (req,res)=>{
             return res.json({success:false, message:"Unauthorized"})
         }
         const bookings= await Booking.find({owner: req.user._id}).populate('car user').select("-user.password").sort({createdAt:-1})
-        res.json({success:false, message:error.message})
+        res.json({success:true,bookings})
     } catch (error) {
         console.log(error.message);
-        res.json({response:false, message:error.message})
+        res.json({success:false, message:error.message})
     }
 }
 
@@ -103,6 +103,6 @@ export const changeBookingStatus = async (req,res)=>{
         res.json({success:true, message:"Status Updated"})
     } catch (error) {
         console.log(error.message);
-        res.json({response:false, message:error.message})
+        res.json({success:false, message:error.message})
     }
 }
