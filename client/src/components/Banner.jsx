@@ -19,7 +19,7 @@ const Banner = () => {
             whileHover={{scale:1.05}}
             whileTap={{scale:0.95}}
             onClick={()=> navigate('/login')}
-            className='px-6 py-2 bg-white hover:bg-slate-100 transition-all tex-primary rounded-lg text-sm mt-4 cursor-pointer'>List your car</motion.button>
+            className='px-6 py-2 bg-white hover:bg-slate-100 transition-all text-primary rounded-lg text-sm mt-4 cursor-pointer'>List your car</motion.button>
         </div>
         <motion.img
         initial={{opacity:0, x:50}}
