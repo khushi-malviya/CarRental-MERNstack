@@ -1,7 +1,9 @@
 import React from 'react'
 import { assets } from '../assets/assets'
 import {motion} from 'motion/react'
+import { useNavigate } from 'react-router-dom'
 const Banner = () => {
+  const navigate =useNavigate()
   return (
     <motion.div 
     initial={{opacity:0, y:50}}
@@ -16,6 +18,7 @@ const Banner = () => {
             <motion.button 
             whileHover={{scale:1.05}}
             whileTap={{scale:0.95}}
+            onClick={()=> navigate('/login')}
             className='px-6 py-2 bg-white hover:bg-slate-100 transition-all tex-primary rounded-lg text-sm mt-4 cursor-pointer'>List your car</motion.button>
         </div>
         <motion.img
