@@ -11,13 +11,13 @@ const Newsletter = () => {
             <motion.h1 
             initial={{opacity:0, y:20}}
             whileInView={{opacity:1, y:0}}
-            transition={{ duration:0.2, duration:0.5}}
+            transition={{ duration:0.2, delay:0.5}}
             
             className="md:text-4xl text-2xl font-semibold">Never Miss a Deal!</motion.h1>
             <motion.p 
             initial={{opacity:0, y:20}}
             whileInView={{opacity:1, y:0}}
-            transition={{ delay:0.3, duration:0.5}}
+            transition={{ duration:0.3, delay:0.5}}
             
             className="md:text-lg text-gray-500/70 pb-8">
                 Subscribe to get the latest offers, new arrivals, and exclusive discounts
